@@ -1,0 +1,6 @@
+{
+  "name": "orcTalk",
+  "dependencies": {
+    "cmudict": "^1.0.2"
+  }
+}
