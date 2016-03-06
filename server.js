@@ -1,13 +1,26 @@
-var CMUDict = require('cmudict').CMUDict;
-var cmudict = new CMUDict();
-var phoneme_str = cmudict.get('prosaic');
+var stt = require('./modules/watsonStt.js');
+var textToPhoneme = require('./modules/textToPhenome.js');
 
-// var res = phoneme_str.split(" ");
+var words = [];
+//textToPhoneme('after', function(err, result){ console.log(err,result); });
+stt('./testSample.wav', function(err, result){
+  wordsData = JSON.parse(result).results[0].alternatives[0].timestamps;
+  
+  for(var i = 0; i < wordsData.length; i++){
 
-// for(var i = 0; i < res.length; i++) {
-// 	if (res[i].length > 1) {
-// 		var temp = res[i].split("");
-// 		console.log(temp);
-// 	};
-// }
+  var faceAnimation = textToPhoneme(wordsData[i][0])
+                               .faceIndex
+                               .trim()
+                               .split(" ")
+                               .map(function(num){ return parseInt(num)});
 
+    word = {
+      word: wordsData[i][0],
+      time: wordsData[i][1],
+      timeEnd: wordsData[i][2],
+      faceAnimation: faceAnimation 
+    };
+    words.push(word);
+  }
+  console.log(words);
+});

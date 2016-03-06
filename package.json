@@ -1,6 +1,7 @@
 {
   "name": "orcTalk",
   "dependencies": {
-    "cmudict": "^1.0.2"
+    "cmudict": "^1.0.2",
+    "watson-developer-cloud": "^1.2.5"
   }
 }
