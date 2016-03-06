@@ -13,7 +13,7 @@ module.exports = function(audioFile, callback) {
   var params = {
     // From file
     audio: fs.createReadStream(audioFile),
-    content_type: 'audio/l16; rate=22050',
+    content_type: 'audio/wav; rate=44100',
     timestamps: true
   };
 
